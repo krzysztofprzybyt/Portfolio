@@ -11,4 +11,5 @@ import java.util.List;
 @Repository
 public interface ReadersDao extends CrudRepository<Readers, Integer> {
     List<Readers> findByUserId(int id);
+    List<Readers> findByNameAndSurname(String name, String surname);
 }

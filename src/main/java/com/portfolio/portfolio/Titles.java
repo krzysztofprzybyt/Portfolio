@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="TITLES")
+@Table(name="TITLES", uniqueConstraints={@UniqueConstraint(columnNames = {"title" , "author", "publication"})})
 public class Titles {
 
     private int titleId;
@@ -32,15 +32,21 @@ public class Titles {
     public int getTitleId() {
         return titleId;
     }
+
     @Column(name="TITLE")
+    @NotNull
     public String getTitle() {
         return title;
     }
+
     @Column(name="AUTHOR")
+    @NotNull
     public String getAuthor() {
         return author;
     }
+
     @Column(name="PUBLICATION")
+    @NotNull
     public int getPublicationYear() {
         return publicationYear;
     }
@@ -74,4 +80,6 @@ public class Titles {
     public void setBooks(List<Books> books) {
         this.books = books;
     }
+
+
 }

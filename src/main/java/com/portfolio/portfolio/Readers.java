@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name="READERS")
+@Table(name="READERS", uniqueConstraints={@UniqueConstraint(columnNames = {"NAME" , "SURNAME"})})
 public class Readers {
 
     private int userId;
@@ -68,7 +68,7 @@ public class Readers {
     @OneToMany(
             targetEntity = Rents.class,
             mappedBy = "reader",
-            cascade = CascadeType.ALL,
+            cascade = CascadeType.REFRESH,
             fetch = FetchType.EAGER
     )
     public List<Rents> getRents() {

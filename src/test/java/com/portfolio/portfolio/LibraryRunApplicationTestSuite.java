@@ -30,12 +30,18 @@ public class LibraryRunApplicationTestSuite {
 	@Test
 	public void TestsDao() {
 
-		Titles title = new Titles("Kilimangaro", "Johm MCanzie", 1990);
+		Titles title = new Titles("Kilimangaro", "John MCanzie", 1990);
 		Readers reader = new Readers("Alice", "Cooper");
 		Books books = new Books(title, "inUse");
 		Rents rent = new Rents(reader, books);
-		readersDao.save(reader);
-		titlesDao.save(title);
+		if(readersDao.findByNameAndSurname(reader.getName(), reader.getSurname()).isEmpty()) {
+			readersDao.save(reader);
+		}
+		if(titlesDao.findByTitleAndAuthorAndPublicationYear(title.getTitle(), title.getAuthor(),title.getPublicationYear()).isEmpty()){
+			titlesDao.save(title);
+		}
+
+
 		booksDao.save(books);
 		rentsDao.save(rent);
 
