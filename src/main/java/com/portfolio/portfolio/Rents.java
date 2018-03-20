@@ -51,7 +51,7 @@ public class Rents {
     }
 
     @OneToOne(
-            cascade = CascadeType.ALL,
+            cascade = CascadeType.REFRESH,
             fetch = FetchType.EAGER
     )
     @JoinColumn(name = "BOOK_ID")

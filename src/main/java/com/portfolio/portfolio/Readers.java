@@ -69,7 +69,7 @@ public class Readers {
             targetEntity = Rents.class,
             mappedBy = "reader",
             cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
+            fetch = FetchType.EAGER
     )
     public List<Rents> getRents() {
         return rents;
