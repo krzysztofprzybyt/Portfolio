@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.transaction.Transactional;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class LibraryRunApplicationTestSuite {
@@ -24,15 +26,16 @@ public class LibraryRunApplicationTestSuite {
 	@Autowired
 	TitlesDao titlesDao;
 
-//	@Test
-//	public void contextLoads() {
-//	}
+	@Test
+	public void contextLoads() {
+	}
+	@Transactional
 	@Test
 	public void TestsDao() {
 
-		Titles title = new Titles("Kilimangaro", "John MCanzie", 1990);
-		Readers reader = new Readers("Alice", "Cooper");
-		Books books = new Books(title, "inUse");
+		Titles title = new Titles("ALigators", "John MCanzie", 1990);
+		Readers reader = new Readers("Alice", "Smith");
+		Books books = new Books(title, "damaged");
 		Rents rent = new Rents(reader, books);
 		if(readersDao.findByNameAndSurname(reader.getName(), reader.getSurname()).isEmpty()) {
 			readersDao.save(reader);
@@ -40,12 +43,7 @@ public class LibraryRunApplicationTestSuite {
 		if(titlesDao.findByTitleAndAuthorAndPublicationYear(title.getTitle(), title.getAuthor(),title.getPublicationYear()).isEmpty()){
 			titlesDao.save(title);
 		}
-
-
 		booksDao.save(books);
 		rentsDao.save(rent);
-
-
 	}
-
 }

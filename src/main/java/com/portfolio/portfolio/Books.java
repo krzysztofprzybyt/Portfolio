@@ -44,7 +44,8 @@ public class Books {
         this.status = status;
     }
 
-    @ManyToOne(
+    @ManyToOne
+            (
             cascade = CascadeType.ALL
             )
     @JoinColumn(name = "TITLE_ID")
