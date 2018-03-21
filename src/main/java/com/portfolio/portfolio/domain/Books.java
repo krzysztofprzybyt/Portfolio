@@ -1,10 +1,13 @@
 package com.portfolio.portfolio.domain;
 
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-
-
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name="BOOKS")
 public class Books {
@@ -14,8 +17,6 @@ public class Books {
     private String status;
     private Titles title;
 
-    public Books() {
-    }
 
     public Books(Titles title, String status) {
         this.title = title;

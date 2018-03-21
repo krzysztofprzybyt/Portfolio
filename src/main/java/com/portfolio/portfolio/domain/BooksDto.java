@@ -13,8 +13,8 @@ public class BooksDto {
     private String status;
     private TitlesDto titleDto;
 
-    public BooksDto(Integer bookId, String status) {
-        this.bookId = bookId;
+    public BooksDto(TitlesDto titlesDto, String status) {
+        this.titleDto = titlesDto;
         this.status = status;
     }
 }
