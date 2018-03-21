@@ -1,25 +1,22 @@
-package com.portfolio.portfolio;
+package com.portfolio.portfolio.domain;
 
 
+
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-
+@NoArgsConstructor
 @Entity
 @Table(name="RENTS")
 public class Rents {
 
-    private int id;
+    private Integer id;
     private Date rentsDate;
     private Date returnDate;
     private Readers reader;
     private Books book;
-
-    public Rents() {
-    }
 
     public Rents(Readers reader, Books book) {
         this.reader = reader;
@@ -40,7 +37,10 @@ public class Rents {
         this.id = bookId;
     }
 
-    @ManyToOne
+    @ManyToOne(
+            cascade = CascadeType.ALL
+
+    )
     @JoinColumn(name = "USER_ID")
     public Readers getReader() {
         return reader;
@@ -51,7 +51,7 @@ public class Rents {
     }
 
     @OneToOne(
-            cascade = CascadeType.REFRESH,
+            cascade = CascadeType.ALL,
             fetch = FetchType.EAGER
     )
     @JoinColumn(name = "BOOK_ID")

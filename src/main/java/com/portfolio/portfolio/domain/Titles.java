@@ -1,5 +1,7 @@
-package com.portfolio.portfolio;
+package com.portfolio.portfolio.domain;
 
+
+import com.portfolio.portfolio.domain.Books;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -10,10 +12,10 @@ import java.util.List;
 @Table(name="TITLES", uniqueConstraints={@UniqueConstraint(columnNames = {"title" , "author", "publication"})})
 public class Titles {
 
-    private int titleId;
+    private Integer titleId;
     private String title;
     private String author;
-    private int publicationYear;
+    private Integer publicationYear;
     private List<Books> books = new ArrayList<>();
 
     public Titles() {

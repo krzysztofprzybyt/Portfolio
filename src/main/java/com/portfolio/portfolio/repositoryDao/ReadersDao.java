@@ -1,6 +1,6 @@
-package com.portfolio.portfolio.dao;
+package com.portfolio.portfolio.repositoryDao;
 
-import com.portfolio.portfolio.Readers;
+import com.portfolio.portfolio.domain.Readers;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

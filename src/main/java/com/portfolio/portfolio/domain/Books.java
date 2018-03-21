@@ -1,4 +1,4 @@
-package com.portfolio.portfolio;
+package com.portfolio.portfolio.domain;
 
 
 import javax.persistence.*;
@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 @Table(name="BOOKS")
 public class Books {
 
-    private int bookId;
+    private Integer bookId;
    //status variants - inRotation, damaged, lost
     private String status;
     private Titles title;
