@@ -2,11 +2,13 @@ package com.portfolio.portfolio.domain;
 
 
 
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name="RENTS")

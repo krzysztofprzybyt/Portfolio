@@ -41,7 +41,7 @@ public class LibraryController {
 
     @RequestMapping(method = RequestMethod.PUT, value = "changeBookStatus")
     public BooksDto changeBookStatus(BooksDto booksDto) {
-        return new BooksDto(1, "inUse");
+        return new BooksDto(new TitlesDto("Jola", "pije jabola", 1234), "inUse");
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "getBooksOfTitleInUse")

@@ -2,12 +2,15 @@ package com.portfolio.portfolio.domain;
 
 
 import com.portfolio.portfolio.domain.Books;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
-
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name="TITLES", uniqueConstraints={@UniqueConstraint(columnNames = {"title" , "author", "publication"})})
 public class Titles {
@@ -18,8 +21,6 @@ public class Titles {
     private Integer publicationYear;
     private List<Books> books = new ArrayList<>();
 
-    public Titles() {
-    }
 
     public Titles(String title, String author, int publicationYear) {
         this.title = title;

@@ -1,11 +1,15 @@
 package com.portfolio.portfolio.domain;
 
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
-
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name="READERS", uniqueConstraints={@UniqueConstraint(columnNames = {"NAME" , "SURNAME"})})
 public class Readers {
@@ -17,8 +21,7 @@ public class Readers {
     private List<Rents> rents;
 
 
-    public Readers() {
-    }
+
 
     public Readers(String name, String surname) {
         this.name = name;
