@@ -7,9 +7,11 @@ import com.portfolio.portfolio.mapper.RentsMapper;
 import com.portfolio.portfolio.mapper.TitlesMapper;
 import com.portfolio.portfolio.service.DbService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
 
 @RestController
@@ -30,28 +32,44 @@ public class LibraryController {
     @Autowired
     private TitlesMapper titlesMapper;
 
-    @RequestMapping(method = RequestMethod.POST, value = "addReader")
-    public void addReader(ReadersDto readersDto) {}
+    @RequestMapping(method = RequestMethod.POST, value = "addReader", consumes = APPLICATION_JSON_VALUE)
+    public void addReader(@RequestBody ReadersDto readersDto) {
+        service.addReader(readersMapper.mapToReaders(readersDto));
+    }
 
-    @RequestMapping(method = RequestMethod.POST, value = "addTitle")
-    public void addTitle(TitlesDto titlesDto) {}
+    @RequestMapping(method = RequestMethod.POST, value = "addTitle", consumes = APPLICATION_JSON_VALUE)
+    public void addTitle(@RequestBody TitlesDto titlesDto) {
+        service.addTittle(titlesMapper.mapToTitles(titlesDto));
+    }
 
-    @RequestMapping(method = RequestMethod.POST, value = "addBook")
-    public void addBook(BooksDto booksDto) {}
+    @RequestMapping(method = RequestMethod.POST, value = "addBook", consumes = APPLICATION_JSON_VALUE)
+    public void addBook(@RequestBody BooksDto booksDto) {
+         service.addBook(booksMapper.mapToBooks(booksDto));
+    }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "changeBookStatus")
-    public BooksDto changeBookStatus(BooksDto booksDto) {
+    @RequestMapping(method = RequestMethod.PUT, value = "changeBookStatus", consumes = APPLICATION_JSON_VALUE)
+    public BooksDto changeBookStatus(@RequestBody BooksDto booksDto) {
         return new BooksDto(new TitlesDto("Jola", "pije jabola", 1234), "inUse");
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "getBooksOfTitleInUse")
-    public Integer getBooksOfTitleInUse(Titles titles) {
-        return 0;
+    @RequestMapping(method = RequestMethod.GET, value = "getBooksOfTitleInUse", consumes = APPLICATION_JSON_VALUE)
+    public Integer getBooksOfTitleInUse(@RequestBody Titles titles) {
+        return 10;
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "rentBook")
-    public void rentBook(RentsDto rentsDto) {}
+    @RequestMapping(method = RequestMethod.POST, value = "rentBook", consumes = APPLICATION_JSON_VALUE)
+    public void rentBook(@RequestBody RentsDto rentsDto) {}
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "returnBook")
-    public void returnBook(Integer bookId) {}
+    @RequestMapping(method = RequestMethod.DELETE, value = "returnBook", consumes = APPLICATION_JSON_VALUE)
+    public void returnBook(@RequestParam Integer bookId) {}
+
+    @RequestMapping(method = RequestMethod.GET, value = "getReaders", consumes = APPLICATION_JSON_VALUE)
+    public List<ReadersDto> getReaders() {
+        return readersMapper.mapToReadersDtoList(service.getAllReaders());
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "getBooks", consumes = APPLICATION_JSON_VALUE)
+    public List<BooksDto> getBooks() {
+        return booksMapper.mapToBooksDtoList(service.getAllBooks());
+    }
 }

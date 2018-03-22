@@ -22,4 +22,11 @@ public class RentsDto {
         this.rentsDate = new Date();
         this.returnDate = new Date();
     }
+    public RentsDto(Integer id, ReadersDto reader, BooksDto book) {
+        this.id = id;
+        this.readerDto = reader;
+        this.bookDto = book;
+        this.rentsDate = new Date();
+        this.returnDate = new Date();
+    }
 }

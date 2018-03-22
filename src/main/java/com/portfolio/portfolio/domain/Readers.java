@@ -28,11 +28,13 @@ public class Readers {
         this.surname = surname;
         this.dateOfCreateAccount = new Date();
     }
+
+
+
     @Id
-    @GeneratedValue
-    @NotNull
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID", unique = true)
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
@@ -41,6 +43,7 @@ public class Readers {
     }
 
     @Column(name="NAME")
+    @NotNull
     public String getName() {
         return name;
     }
@@ -50,6 +53,7 @@ public class Readers {
     }
 
     @Column(name="SURNAME")
+    @NotNull
     public String getSurname() {
         return surname;
     }
@@ -59,6 +63,7 @@ public class Readers {
     }
 
     @Column(name="DATE_CREATE")
+    @NotNull
     public Date getDateOfCreateAccount() {
         return dateOfCreateAccount;
     }

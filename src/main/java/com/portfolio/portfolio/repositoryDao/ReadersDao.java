@@ -14,4 +14,6 @@ public interface ReadersDao extends CrudRepository<Readers, Integer> {
     List<Readers> findByNameAndSurname(String name, String surname);
     @Override
     List<Readers> findAll();
+    @Override
+    Readers save(Readers readers);
 }

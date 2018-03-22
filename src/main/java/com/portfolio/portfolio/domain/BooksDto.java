@@ -17,4 +17,9 @@ public class BooksDto {
         this.titleDto = titlesDto;
         this.status = status;
     }
+    public BooksDto(Integer bookId, TitlesDto titlesDto, String status) {
+        this.bookId = bookId;
+        this.titleDto = titlesDto;
+        this.status = status;
+    }
 }

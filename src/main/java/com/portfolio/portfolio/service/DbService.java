@@ -1,8 +1,6 @@
 package com.portfolio.portfolio.service;
 
-import com.portfolio.portfolio.domain.Readers;
-import com.portfolio.portfolio.domain.ReadersDto;
-import com.portfolio.portfolio.domain.TitlesDto;
+import com.portfolio.portfolio.domain.*;
 import com.portfolio.portfolio.repositoryDao.BooksDao;
 import com.portfolio.portfolio.repositoryDao.ReadersDao;
 import com.portfolio.portfolio.repositoryDao.RentsDao;
@@ -28,5 +26,23 @@ public class DbService {
 
     public List<Readers> getAllReaders() {
         return readersDao.findAll();
+    }
+    public List<Books> getAllBooks() {
+        return booksDao.findAll();
+    }
+    public Readers addReader(Readers readers) {
+        return readersDao.save(readers);
+    }
+    public Titles addTittle(final Titles titles) {
+        return titlesDao.save(titles);
+    }
+    public Books addBook(final Books books) {
+        return booksDao.save(books);
+    }
+    public List<Titles> findTitle(Titles titles) {
+        return titlesDao.findByTitleAndAuthorAndPublicationYear(
+                titles.getTitle(),
+                titles.getAuthor(),
+                titles.getPublicationYear());
     }
 }

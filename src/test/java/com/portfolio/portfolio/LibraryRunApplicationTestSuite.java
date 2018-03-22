@@ -18,22 +18,22 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class LibraryRunApplicationTestSuite {
 
-//	@Autowired
-//	BooksDao booksDao;
-//	@Autowired
-//	ReadersDao readersDao;
-//	@Autowired
-//	RentsDao rentsDao;
-//	@Autowired
-//	TitlesDao titlesDao;
-//
+	@Autowired
+	BooksDao booksDao;
+	@Autowired
+	ReadersDao readersDao;
+	@Autowired
+	RentsDao rentsDao;
+	@Autowired
+	TitlesDao titlesDao;
+
 	@Test
 	public void contextLoads() {
 	}
 
-//	@Test
-//	public void TestsDao() {
-//
+	@Test
+	public void TestsDao() {
+
 //		Titles title = new Titles("ALigators", "John MCanzie", 1990);
 //		Readers reader = new Readers("Alice", "Smith");
 //		Books books = new Books(title, "damaged");
@@ -48,6 +48,6 @@ public class LibraryRunApplicationTestSuite {
 //		}
 //		booksDao.save(books);
 
-//		rentsDao.save(rent);
-//	}
+		//rentsDao.save(rent);
+	}
 }

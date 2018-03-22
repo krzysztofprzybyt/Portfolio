@@ -24,14 +24,13 @@ public class Books {
     }
 
     @Id
-    @GeneratedValue
-    @NotNull
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID", unique = true)
-    public int getBookId() {
+    public Integer getBookId() {
         return bookId;
     }
 
-    private void setBookId(int bookId) {
+    private void setBookId(Integer bookId) {
         this.bookId = bookId;
     }
 

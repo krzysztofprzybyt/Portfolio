@@ -22,17 +22,16 @@ public class Titles {
     private List<Books> books = new ArrayList<>();
 
 
-    public Titles(String title, String author, int publicationYear) {
+    public Titles(String title, String author, Integer publicationYear) {
         this.title = title;
         this.author = author;
         this.publicationYear = publicationYear;
     }
 
     @Id
-    @GeneratedValue
-    @NotNull
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID", unique = true)
-    public int getTitleId() {
+    public Integer getTitleId() {
         return titleId;
     }
 
@@ -49,12 +48,11 @@ public class Titles {
     }
 
     @Column(name="PUBLICATION")
-    @NotNull
-    public int getPublicationYear() {
+    public Integer getPublicationYear() {
         return publicationYear;
     }
 
-    private void setTitleId(int titleId) {
+    private void setTitleId(Integer titleId) {
         this.titleId = titleId;
     }
 
@@ -66,7 +64,7 @@ public class Titles {
         this.author = author;
     }
 
-    private void setPublicationYear(int publicationYear) {
+    private void setPublicationYear(Integer publicationYear) {
         this.publicationYear = publicationYear;
     }
 

@@ -12,5 +12,8 @@ import java.util.List;
 public interface TitlesDao extends CrudRepository<Titles, Integer> {
     List<Titles> findByTitle(String title);
 
-    List<Titles> findByTitleAndAuthorAndPublicationYear(String title, String author, int year);
+    List<Titles> findByTitleAndAuthorAndPublicationYear(String title, String author, Integer publicationYear);
+
+    @Override
+    Titles save(Titles titles);
 }

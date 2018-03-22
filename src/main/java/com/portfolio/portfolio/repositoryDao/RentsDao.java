@@ -11,4 +11,6 @@ import java.util.List;
 @Repository
 public interface RentsDao extends CrudRepository<Rents, Integer> {
     List<Rents> findById(int id);
+    @Override
+    Rents save(Rents rents);
 }

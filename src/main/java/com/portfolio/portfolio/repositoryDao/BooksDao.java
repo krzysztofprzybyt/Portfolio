@@ -14,4 +14,7 @@ public interface BooksDao extends CrudRepository<Books, Integer> {
 
     @Override
     Books save(Books book);
+
+    @Override
+    List<Books> findAll();
 }

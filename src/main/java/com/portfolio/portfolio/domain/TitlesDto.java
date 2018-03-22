@@ -18,7 +18,13 @@ public class TitlesDto {
     private Integer publicationYear;
     private List<BooksDto> booksDtoList = new ArrayList<>();
 
-    public TitlesDto(String title, String author, int publicationYear) {
+    public TitlesDto(String title, String author, Integer publicationYear) {
+        this.title = title;
+        this.author = author;
+        this.publicationYear = publicationYear;
+    }
+    public TitlesDto(Integer titleid, String title, String author, Integer publicationYear) {
+        this.titleId = titleid;
         this.title = title;
         this.author = author;
         this.publicationYear = publicationYear;

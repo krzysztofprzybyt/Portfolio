@@ -23,4 +23,12 @@ public class ReadersDto {
         this.surname = surname;
         this.dateOfCreateAccount = new Date();
     }
+
+    public ReadersDto(Integer userId, String name, String surname) {
+        this.userId = userId;
+        this.name = name;
+        this.surname = surname;
+        this.dateOfCreateAccount = new Date();
+
+    }
 }
