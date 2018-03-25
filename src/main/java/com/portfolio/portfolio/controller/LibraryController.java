@@ -39,6 +39,7 @@ public class LibraryController {
 
     @RequestMapping(method = RequestMethod.POST, value = "addTitle", consumes = APPLICATION_JSON_VALUE)
     public void addTitle(@RequestBody TitlesDto titlesDto) {
+
         service.addTittle(titlesMapper.mapToTitles(titlesDto));
     }
 
@@ -71,5 +72,10 @@ public class LibraryController {
     @RequestMapping(method = RequestMethod.GET, value = "getBooks", consumes = APPLICATION_JSON_VALUE)
     public List<BooksDto> getBooks() {
         return booksMapper.mapToBooksDtoList(service.getAllBooks());
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "getTitles", consumes = APPLICATION_JSON_VALUE)
+    public List<TitlesDto> getTitles() {
+        return titlesMapper.mapToTitlesDtoList(service.getAllTitles());
     }
 }

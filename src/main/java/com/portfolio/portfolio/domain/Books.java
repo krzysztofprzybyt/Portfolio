@@ -13,7 +13,6 @@ import javax.validation.constraints.NotNull;
 public class Books {
 
     private Integer bookId;
-   //status variants - inRotation, damaged, lost
     private String status;
     private Titles title;
 
@@ -22,7 +21,6 @@ public class Books {
         this.title = title;
         this.status = status;
     }
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID", unique = true)
@@ -44,11 +42,11 @@ public class Books {
         this.status = status;
     }
 
-    @ManyToOne
-            (
-            cascade = CascadeType.ALL
-            )
-    @JoinColumn(name = "TITLE_ID")
+    @ManyToOne(
+            cascade = CascadeType.ALL,
+            optional = true,
+            fetch = FetchType.LAZY)
+    @JoinColumn(nullable = true, name = "TITLE_ID")
     public Titles getTitle() {
         return title;
     }
@@ -56,4 +54,5 @@ public class Books {
     public void setTitle(Titles title) {
         this.title = title;
     }
+
 }

@@ -1,6 +1,7 @@
 package com.portfolio.portfolio.repositoryDao;
 
 import com.portfolio.portfolio.domain.Books;
+import com.portfolio.portfolio.domain.Titles;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -17,4 +18,8 @@ public interface BooksDao extends CrudRepository<Books, Integer> {
 
     @Override
     List<Books> findAll();
+
+    Books findByTitle(Titles titles);
+
+
 }

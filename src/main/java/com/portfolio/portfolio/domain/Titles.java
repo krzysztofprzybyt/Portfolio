@@ -9,6 +9,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
+
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -21,13 +23,11 @@ public class Titles {
     private Integer publicationYear;
     private List<Books> books = new ArrayList<>();
 
-
     public Titles(String title, String author, Integer publicationYear) {
         this.title = title;
         this.author = author;
         this.publicationYear = publicationYear;
     }
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID", unique = true)
@@ -36,13 +36,13 @@ public class Titles {
     }
 
     @Column(name="TITLE")
-    @NotNull
+    //@NotNull
     public String getTitle() {
         return title;
     }
 
     @Column(name="AUTHOR")
-    @NotNull
+   // @NotNull
     public String getAuthor() {
         return author;
     }
@@ -51,6 +51,20 @@ public class Titles {
     public Integer getPublicationYear() {
         return publicationYear;
     }
+    @OneToMany(
+            targetEntity = Books.class,
+            mappedBy = "title",
+            cascade = CascadeType.REFRESH,
+            fetch = FetchType.EAGER
+    )
+    public List<Books> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Books> books) {
+        this.books = books;
+    }
+
 
     private void setTitleId(Integer titleId) {
         this.titleId = titleId;
@@ -68,19 +82,6 @@ public class Titles {
         this.publicationYear = publicationYear;
     }
 
-    @OneToMany(
-            targetEntity = Books.class,
-            mappedBy = "title",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER
-    )
-    public List<Books> getBooks() {
-        return books;
-    }
-
-    public void setBooks(List<Books> books) {
-        this.books = books;
-    }
 
 
 }
