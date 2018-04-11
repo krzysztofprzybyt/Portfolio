@@ -15,9 +15,9 @@ public class BooksDto {
 
 
 
-    public BooksDto(TitlesDto titlesDto, String status) {
-        this.titleDto = titlesDto;
+    public BooksDto( TitlesDto titlesDto, String status) {
         this.status = status;
+        this.titleDto = titlesDto;
     }
     public BooksDto(Integer bookId, TitlesDto titlesDto, String status) {
         this.bookId = bookId;

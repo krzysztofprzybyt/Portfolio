@@ -5,6 +5,7 @@ import com.portfolio.portfolio.mapper.BooksMapper;
 import com.portfolio.portfolio.mapper.ReadersMapper;
 import com.portfolio.portfolio.mapper.RentsMapper;
 import com.portfolio.portfolio.mapper.TitlesMapper;
+import com.portfolio.portfolio.repositoryDao.TitlesDao;
 import com.portfolio.portfolio.service.DbService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +33,7 @@ public class LibraryController {
     @Autowired
     private TitlesMapper titlesMapper;
 
+
     @RequestMapping(method = RequestMethod.POST, value = "addReader", consumes = APPLICATION_JSON_VALUE)
     public void addReader(@RequestBody ReadersDto readersDto) {
         service.addReader(readersMapper.mapToReaders(readersDto));
@@ -45,12 +47,19 @@ public class LibraryController {
 
     @RequestMapping(method = RequestMethod.POST, value = "addBook", consumes = APPLICATION_JSON_VALUE)
     public void addBook(@RequestBody BooksDto booksDto) {
+
+
          service.addBook(booksMapper.mapToBooks(booksDto));
+       // addBookTitle(booksDto2);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "changeBookStatus", consumes = APPLICATION_JSON_VALUE)
-    public BooksDto changeBookStatus(@RequestBody BooksDto booksDto) {
-        return new BooksDto(new TitlesDto("Jola", "pije jabola", 1234), "inUse");
+    public void changeBookStatus(@RequestBody BooksDto booksDto) {
+        //return new BooksDto("inUse");
+    }
+    @RequestMapping(method = RequestMethod.PUT, value = "addBookTitle", consumes = APPLICATION_JSON_VALUE)
+    public BooksDto addBookTitle(@RequestBody BooksDto booksDto) {
+        return booksMapper.mapToBooksDto(service.addBook(booksMapper.mapToBooks(booksDto)));
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "getBooksOfTitleInUse", consumes = APPLICATION_JSON_VALUE)

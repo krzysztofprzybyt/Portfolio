@@ -35,22 +35,50 @@ public class DbService {
     public List<Titles> getAllTitles() {
         return titlesDao.findAll();
     }
+//    public Titles getTitle() {
+//        if(titlesDao.findByTitleAndAuthorAndPublicationYear(
+//                booksDto.getTitleDto().getTitle(),
+//                booksDto.getTitleDto().getAuthor(),
+//                booksDto.getTitleDto().getPublicationYear())==null) {
+//            service.addTittle(titlesMapper.mapToTitles(booksDto.getTitleDto()));
+//        }
+//        TitlesDto titleDto = titlesMapper.mapToTitlesDto(titlesDao.findByTitleAndAuthorAndPublicationYear(
+//                booksDto.getTitleDto().getTitle(),
+//                booksDto.getTitleDto().getAuthor(),
+//                booksDto.getTitleDto().getPublicationYear()));
+//
+//        BooksDto booksDto2= new BooksDto(
+//                new TitlesDto(titleDto.getTitleId(),
+//                        titleDto.getTitle(),
+//                        titleDto.getAuthor(),
+//                        titleDto.getPublicationYear()),
+//                booksDto.getStatus() );
+//
+//    }
     public Readers addReader(Readers readers) {
         return readersDao.save(readers);
     }
     public void addTittle(final Titles titles) {
        if(titlesDao.findByTitleAndAuthorAndPublicationYear(
-               titles.getTitle(),titles.getAuthor(),titles.getPublicationYear()).isEmpty()) {
+               titles.getTitle(),titles.getAuthor(),titles.getPublicationYear())==null) {
          titlesDao.save(titles);
-       } else System.out.println("Title is present");
+       } else { System.out.println("Title is present");}
     }
     public Books addBook(final Books books) {
-//        if(titlesDao.findByTitleAndAuthorAndPublicationYear(
-//                books.getTitle().getTitle(),books.getTitle().getAuthor(),books.getTitle().getPublicationYear()).isEmpty()) {
+        Titles titles = titlesDao.findByTitleAndAuthorAndPublicationYear(
+                books.getTitle().getTitle(),books.getTitle().getAuthor(),books.getTitle().getPublicationYear());
+        if(titles==null) {
+
             return booksDao.save(books);
 
+        } else {
+            books.setTitle(titles);
+            return booksDao.save(books);
+        }
+
+
     }
-    public List<Titles> findTitle(Titles titles) {
+    public Titles findTitle(Titles titles) {
         return titlesDao.findByTitleAndAuthorAndPublicationYear(
                 titles.getTitle(),
                 titles.getAuthor(),

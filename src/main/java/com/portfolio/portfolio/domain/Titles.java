@@ -27,6 +27,7 @@ public class Titles {
         this.title = title;
         this.author = author;
         this.publicationYear = publicationYear;
+        this.books.add(new Books());
     }
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -54,7 +55,7 @@ public class Titles {
     @OneToMany(
             targetEntity = Books.class,
             mappedBy = "title",
-            cascade = CascadeType.REFRESH,
+            cascade = CascadeType.ALL,
             fetch = FetchType.EAGER
     )
     public List<Books> getBooks() {

@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 @AllArgsConstructor
-@NoArgsConstructor
+//@NoArgsConstructor
 @Entity
 @Table(name="BOOKS")
 public class Books {
@@ -18,8 +18,12 @@ public class Books {
 
 
     public Books(Titles title, String status) {
-        this.title = title;
         this.status = status;
+        this.title = title;
+    }
+    public Books() {
+        this.status = "InUse";
+
     }
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -44,7 +48,7 @@ public class Books {
 
     @ManyToOne(
             cascade = CascadeType.ALL,
-            optional = true,
+            optional = false,
             fetch = FetchType.LAZY)
     @JoinColumn(nullable = true, name = "TITLE_ID")
     public Titles getTitle() {
